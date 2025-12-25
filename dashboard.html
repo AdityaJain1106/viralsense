@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViralSense AI - Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="navbar">
+        <div class="logo">
+          <img
+            src="assets/logo.png"
+            alt="ViralSense AI Logo"
+            class="logo-img"
+          />
+          ViralSense AI
+        </div>
+        <nav>
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+        </nav>
+        <div class="user-profile">
+          <button id="logoutBtn">Log Out</button>
+        </div>
+        <button class="hamburger" id="hamburgerBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </header>
+      <!-- Mobile / Laptop Sidebar -->
+      <aside class="side-drawer" id="sideDrawer">
+        <button class="close-drawer" id="closeDrawer">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <nav class="drawer-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+
+          <button class="drawer-logout" id="drawerLogout">Log Out</button>
+        </nav>
+      </aside>
+
+      <main class="dashboard-layout">
+        <div class="feed-panel panel">
+          <div class="panel-header">
+            <h3>Feed</h3>
+          </div>
+
+          <div class="feed-content">
+            <div class="feed-item twitter">
+              <i class="fab fa-twitter source-icon"></i>
+              <div>
+                <p>
+                  <strong>@TechGenius:</strong> Just tried the new #EcoPhone,
+                  it's amazing! Best battery life ever. #SustainableTech
+                  <span class="days-ago">1 hour ago</span>
+                </p>
+                <span class="sentiment positive">Positive</span>
+              </div>
+            </div>
+
+            <div class="feed-item reddit">
+              <i class="fab fa-reddit source-icon"></i>
+              <div>
+                <p>
+                  <strong>r/finance:</strong> Major drop in market sentiment for
+                  $XYZ stock today. Experts are baffled.
+                  <span class="days-ago">3 hours ago</span>
+                </p>
+                <span class="sentiment negative">Negative</span>
+              </div>
+            </div>
+
+            <div class="feed-item youtube">
+              <i class="fab fa-youtube source-icon"></i>
+              <div>
+                <p>
+                  <strong>Video:</strong> Climate Action: The Global Response |
+                  New Documentary Trailer
+                  <span class="days-ago">5 hours ago</span>
+                </p>
+                <span class="sentiment neutral">Neutral</span>
+              </div>
+            </div>
+
+            <div class="feed-item twitter">
+              <i class="fab fa-twitter source-icon"></i>
+              <div>
+                <p>
+                  <strong>@GlobalNews:</strong> Breaking: New AI regulations
+                  proposed in the Senate today. Full details at 9.
+                  <span class="days-ago">8 hours ago</span>
+                </p>
+                <span class="sentiment neutral">Neutral</span>
+              </div>
+            </div>
+
+            <div class="feed-item reddit">
+              <i class="fab fa-reddit source-icon"></i>
+              <div>
+                <p>
+                  <strong>r/politics:</strong> Discussing the latest election
+                  polls and their implications.
+                  <span class="days-ago">12 hours ago</span>
+                </p>
+                <span class="sentiment neutral">Neutral</span>
+              </div>
+            </div>
+
+            <div class="feed-item twitter">
+              <i class="fab fa-twitter source-icon"></i>
+              <div>
+                <p>
+                  <strong>@GamingElite:</strong> Can't believe the new game
+                  delay! So frustrating! #GamerLife
+                  <span class="days-ago">1 day ago</span>
+                </p>
+                <span class="sentiment negative">Negative</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-content-panels">
+          <div class="panel trend-intelligence highlighted-border">
+            <div class="panel-header">
+              <h3>Trend Intelligence</h3>
+              <div class="time-range">
+                Last 24h <i class="fas fa-clock"></i>
+              </div>
+            </div>
+            <div class="word-cloud-area">
+              <span class="word cloud-xxlarge" style="color: var(--neon-purple)"
+                >AI</span
+              >
+              <span class="word cloud-xlarge" style="color: var(--neon-blue)"
+                >Elections</span
+              >
+              <span class="word cloud-large">EcoPhone</span>
+              <span class="word cloud-medium">MarketDrop</span>
+              <span class="word cloud-large" style="color: var(--neon-purple)"
+                >Gaming</span
+              >
+              <span class="word cloud-small">Stock</span>
+              <span class="word cloud-medium" style="color: var(--neon-blue)"
+                >Regulations</span
+              >
+              <span class="word cloud-tiny">Senate</span>
+              <span class="word cloud-medium">BatteryLife</span>
+            </div>
+          </div>
+          <br />
+
+          <div class="panel live-sentiment-trends highlighted-border">
+            <div class="panel-header">
+              <h3>Live Sentiment Trends</h3>
+              <div class="ai-toggle">
+                AI Projection <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="chart-container" style="height: 400px">
+              <canvas id="sentimentChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="alerts-summary-panels">
+          <div class="panel highlighted-border">
+            <h3>Smart Alerts</h3>
+            <div class="smart-alerts">
+              <div class="alert-item red">
+                <i class="fas fa-exclamation-triangle"></i> Competitor "Beta
+                Corp" Gaining Ground <span class="time-ago">10 min ago</span>
+              </div>
+              <div class="alert-item green">
+                <i class="fas fa-heart"></i> Positive Sentiment Peak: +15%
+                <span class="time-ago">30 min ago</span>
+              </div>
+              <div class="alert-item red">
+                <i class="fas fa-bell"></i> Hate Content Detected on Reddit
+                <span class="time-ago">3 hours ago</span>
+              </div>
+              <div class="alert-item green">
+                <i class="fas fa-fire"></i> Topic "New Tech" Going Viral
+                <span class="time-ago">8 hours ago</span>
+              </div>
+              <div class="alert-item red">
+                <i class="fas fa-chart-line"></i> Sentiment Drop in "Election
+                2024" <span class="time-ago">2 hours ago</span>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <div class="panel daily-summary highlighted-border">
+            <h3>Daily Auto-Summary</h3>
+            <div class="summary-text">
+              <ul>
+                <li>
+                  Use Content Detected on Reddit ins hates soiling news today
+                  but insines and contents.
+                </li>
+                <li>
+                  Topic "New Tech" Going Viral in Hos Content and content
+                  exerpis in humanitarian.
+                </li>
+                <li>
+                  Climate Action: Sentimors hoterol of contents update hate
+                  insimats and sentiment drop in "Election 2024".
+                </li>
+                <li>
+                  Summariser ones and trends in apps on inewlor ealy prohinance
+                  copumit your trends.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script>
+      const hamburger = document.getElementById("hamburgerBtn");
+      const drawer = document.getElementById("sideDrawer");
+      const closeDrawer = document.getElementById("closeDrawer");
+      const drawerLogout = document.getElementById("drawerLogout");
+
+      hamburger.addEventListener("click", () => {
+        drawer.classList.add("open");
+      });
+
+      closeDrawer.addEventListener("click", () => {
+        drawer.classList.remove("open");
+      });
+
+      drawerLogout.addEventListener("click", () => {
+        document.getElementById("logoutBtn")?.click();
+      });
+    </script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD8VKqA11Yl1Yz_K-77M5kBTbi-LIwJpGo",
+        authDomain: "viralsense-ai.firebaseapp.com",
+        projectId: "viralsense-ai",
+        storageBucket: "viralsense-ai.firebasestorage.app",
+        messagingSenderId: "592532332570",
+        appId: "1:592532332570:web:9a622f9c58da926502f1a3",
+        measurementId: "G-D29ZR8T4RR",
+      };
+
+      // Init Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // 🔒 Protect dashboard — redirect if user not logged in
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "signup.html";
+        }
+      });
+
+      // 🔥 Logout Function
+      const logoutBtn = document.querySelector(".user-profile button");
+
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          await signOut(auth);
+          window.location.href = "signup.html";
+        } catch (error) {
+          console.error("Logout error:", error);
+        }
+      });
+    </script>
+  </body>
+</html>

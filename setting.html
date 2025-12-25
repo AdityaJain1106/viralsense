@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViralSense AI - Setting</title>
+    
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="setting.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="navbar">
+        <div class="logo">
+          <img
+            src="assets/logo.png"
+            alt="ViralSense AI Logo"
+            class="logo-img"
+          />
+          ViralSense AI
+        </div>
+        <nav>
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+        </nav>
+        <div class="user-profile">
+          <button id="logoutBtn">Log Out</button>
+        </div>
+        <button class="hamburger" id="hamburgerBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </header>
+      <!-- Mobile / Laptop Sidebar -->
+      <aside class="side-drawer" id="sideDrawer">
+        <button class="close-drawer" id="closeDrawer">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <nav class="drawer-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+
+          <button class="drawer-logout" id="drawerLogout">Log Out</button>
+        </nav>
+      </aside>
+
+        <main class="settings-layout">
+            
+            <div class="profile-panel panel highlighted-border">
+                <div class="panel-header">
+                    <h3><i class="fas fa-user-cog"></i> Profile & Security</h3>
+                </div>
+                
+                <form class="settings-form">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" value="Jane Doe (Admin)">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="jane.doe@viral.ai" disabled>
+                    
+                    <label for="password">Change Password</label>
+                    <input type="password" id="password" placeholder="Enter new password">
+                    
+                    <button type="button" class="login-btn" style="width: 100%; margin-top: 20px;">
+                        Update Profile
+                    </button>
+                    
+                    <button type="button" class="login-btn" style="width: 100%; margin-top: 10px; background-color: var(--negative);">
+                        Sign Out All Devices
+                    </button>
+                </form>
+            </div>
+
+            <div class="data-sources-panel panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-database"></i> Data Sources & Access</h3>
+                    <div class="time-range">Status: Active <i class="fas fa-check-circle" style="color: var(--positive);"></i></div>
+                </div>
+                
+                <div class="source-item">
+                    <i class="fab fa-twitter"></i> 
+                    <span>Twitter/X Stream</span>
+                    <button class="source-toggle connect-btn">Connected</button>
+                </div>
+                <div class="source-item">
+                    <i class="fab fa-reddit"></i> 
+                    <span>Reddit API</span>
+                    <button class="source-toggle connect-btn">Connected</button>
+                </div>
+                <div class="source-item">
+                    <i class="fab fa-youtube"></i> 
+                    <span>YouTube Comments</span>
+                    <button class="source-toggle disconnect-btn">Disconnect</button>
+                </div>
+                <div class="source-item">
+                    <i class="fas fa-rss"></i> 
+                    <span>News RSS Feeds</span>
+                    <button class="source-toggle connect-btn">Connected</button>
+                </div>
+                
+                <button type="button" class="login-btn" style="width: 100%; margin-top: 20px; background-color: var(--neon-purple);">
+                    <i class="fas fa-plus"></i> Add New Source
+                </button>
+            </div>
+
+            <div class="preferences-panel panel highlighted-border">
+                <div class="panel-header">
+                    <h3><i class="fas fa-palette"></i> Display Preferences</h3>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Dashboard Theme</label>
+                    <select>
+                        <option>Dark/Neon (Default)</option>
+                        <option>Light Mode (Experimental)</option>
+                        <option>Monochrome</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Real-Time Update Interval</label>
+                    <select>
+                        <option>5 Seconds</option>
+                        <option>15 Seconds</option>
+                        <option>30 Seconds</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Enable High-Contrast Mode</label>
+                    <input type="checkbox">
+                </div>
+            </div>
+
+            <div class="alert-config-panel panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-bell"></i> Alert Configuration</h3>
+                </div>
+                
+                <div class="setting-item">
+                    <label>Email Alerts for Virality Spike</label>
+                    <input type="checkbox" checked>
+                </div>
+                <div class="setting-item">
+                    <label>Threshold for Negative Sentiment</label>
+                    <input type="number" value="20" min="5" max="50" style="width: 60px; text-align: center;">%
+                </div>
+                <div class="setting-item">
+                    <label>Desktop Notifications</label>
+                    <input type="checkbox" checked>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+    <script src="setting.js"></script>
+     <script>
+      const hamburger = document.getElementById("hamburgerBtn");
+      const drawer = document.getElementById("sideDrawer");
+      const closeDrawer = document.getElementById("closeDrawer");
+      const drawerLogout = document.getElementById("drawerLogout");
+
+      hamburger.addEventListener("click", () => {
+        drawer.classList.add("open");
+      });
+
+      closeDrawer.addEventListener("click", () => {
+        drawer.classList.remove("open");
+      });
+
+      drawerLogout.addEventListener("click", () => {
+        document.getElementById("logoutBtn")?.click();
+      });
+    </script>
+</body>
+</html>

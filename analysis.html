@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViralSense AI - Analysis</title>
+    
+    <link rel="stylesheet" href="analysis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <header class="navbar">
+        <div class="logo">
+          <img
+            src="assets/logo.png"
+            alt="ViralSense AI Logo"
+            class="logo-img"
+          />
+          ViralSense AI
+        </div>
+        <nav>
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+        </nav>
+        <div class="user-profile">
+          <button id="logoutBtn">Log Out</button>
+        </div>
+        <button class="hamburger" id="hamburgerBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </header>
+      <!-- Mobile / Laptop Sidebar -->
+      <aside class="side-drawer" id="sideDrawer">
+        <button class="close-drawer" id="closeDrawer">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <nav class="drawer-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+
+          <button class="drawer-logout" id="drawerLogout">Log Out</button>
+        </nav>
+      </aside>
+
+        <main class="analysis-grid">
+
+            <section class="panel feed">
+                <div class="panel-header">
+                    <h3>Feed</h3>
+                </div>
+                
+                <div class="feed-content">
+                    <div class="feed-item twitter">
+                        <i class="fab fa-twitter source-icon"></i> 
+                        <div>
+                            <p>Social media newlitet that msaixion interna inveye rnsgible</p>
+                            <span class="days-ago">18 days ago</span>
+                        </div>
+                        <span class="sentiment positive">Positive</span>
+                    </div>
+                    <div class="feed-item youtube">
+                        <i class="fab fa-youtube source-icon"></i>
+                        <div>
+                            <p>Video: Upcoming tech review trailer is live now!</p>
+                            <span class="days-ago">3 hours ago</span>
+                        </div>
+                        <span class="sentiment negative">Negative</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel post-analysis highlighted-border">
+                <div class="panel-header">
+                    <h3>Post Analysis</h3>
+                </div>
+                <div class="post-content">
+                    Just tried the new *#EcoPhone, it's amazing! Best battery life ever. **#SustainableTech* *#Mobile*
+                </div>
+            </section>
+
+            <section class="panel ai-insights highlighted-border">
+                <h3>AI Insights</h3>
+                <ul>
+                    <li>*Potential Viral Trend*</li>
+                    <li>*Positive Sentiment Driver:* "Best battery life"</li>
+                    <li>No Misinformation Detected</li>
+                    <li>*Related Topics:* <br> #SustainableTech, #Mobile</li>
+                </ul>
+            </section>
+
+            <section class="panel virality-score">
+                <h3>Virality Score</h3>
+                <div class="score-container">
+                    <div class="score-chart">
+                        <span id="virality-value">85/100</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel  highlighted-border">
+                <h3>Sentiment Breakdown</h3>
+                <div class="sentiment-breakdown">
+                    <div class="sentiment-item">
+                        <p>Positive: <span id="positive-percentage">78%</span></p>
+                        <div class="progress-bar positive"></div>
+                    </div>
+                    <div class="sentiment-item">
+                        <p>Neutral: <span id="neutral-percentage">15%</span></p>
+                        <div class="progress-bar neutral"></div>
+                    </div>
+                    <div class="sentiment-item">
+                        <p>Negative: <span id="negative-percentage">7%</span></p>
+                        <div class="progress-bar negative"></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="analysis.js"></script>
+     <script>
+      const hamburger = document.getElementById("hamburgerBtn");
+      const drawer = document.getElementById("sideDrawer");
+      const closeDrawer = document.getElementById("closeDrawer");
+      const drawerLogout = document.getElementById("drawerLogout");
+
+      hamburger.addEventListener("click", () => {
+        drawer.classList.add("open");
+      });
+
+      closeDrawer.addEventListener("click", () => {
+        drawer.classList.remove("open");
+      });
+
+      drawerLogout.addEventListener("click", () => {
+        document.getElementById("logoutBtn")?.click();
+      });
+    </script>
+</body>
+</html>

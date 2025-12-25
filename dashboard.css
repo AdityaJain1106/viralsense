@@ -1,0 +1,345 @@
+/* ================================
+   GLOBAL RESET (LIKE YOUR SAMPLE)
+================================ */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Fira Code", monospace;
+  background-color: #0b1121;
+  color: #c9d1d9;
+  min-height: 100vh;
+  overflow-x: hidden; /* 🔥 NO HORIZONTAL SCROLL EVER */
+}
+
+/* ================================
+   VARIABLES
+================================ */
+:root {
+  --neon-blue: #63d4e0;
+  --neon-purple: #9d52ff;
+  --mid-bg: #161b22;
+  --panel-border: #2d343f;
+  --secondary-text: #8b949e;
+  --positive: #3fb950;
+  --negative: #ff7b72;
+}
+
+/* ================================
+   APP CONTAINER
+================================ */
+.app-container {
+  max-width: 1600px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ================================
+   NAVBAR
+================================ */
+.navbar {
+  height: 60px;
+  background: #121820;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--neon-purple);
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #c9d1d9;
+}
+
+.navbar nav a:hover {
+  color: var(--neon-blue);
+  border-bottom: 2px solid var(--neon-blue);
+}
+
+#logoutBtn {
+  background: var(--neon-purple);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================================
+   HAMBURGER
+================================ */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--neon-blue);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* ================================
+   SIDE DRAWER (NO OVERFLOW)
+================================ */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: #0b1121;
+  padding: 25px;
+  z-index: 999;
+
+  /* 🔥 KEY FIX */
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
+}
+
+.close-drawer {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--neon-purple);
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.drawer-nav a {
+  text-decoration: none;
+  color: #c9d1d9;
+  font-size: 1.1rem;
+}
+
+.drawer-logout {
+  margin-top: 40px;
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--neon-purple);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+/* ================================
+   PANELS (VERTICAL FLOW ONLY)
+================================ */
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--mid-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
+}
+
+
+/* ================================
+   FEED
+================================ */
+.feed-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.feed-item {
+  background: #0d1117;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+/* ================================
+   SENTIMENT
+================================ */
+.sentiment {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.positive { background: var(--positive); color: #000; }
+.negative { background: var(--negative); color: #000; }
+.neutral  { background: var(--neon-blue); color: #000; }
+
+/* ================================
+   WORD CLOUD
+================================ */
+.word-cloud-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.word {
+  margin: 6px;
+  font-weight: bold;
+}
+
+.cloud-xxlarge { font-size: 3rem; }
+.cloud-xlarge  { font-size: 2.3rem; }
+.cloud-large   { font-size: 1.6rem; }
+.cloud-medium  { font-size: 1.2rem; }
+
+/* ================================
+   ALERTS
+================================ */
+.alert-item {
+  background: #0d1117;
+  padding: 10px;
+  border-left: 4px solid;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.alert-item.red { border-color: var(--negative); }
+.alert-item.green { border-color: var(--positive); }
+
+/* ================================
+   RESPONSIVE (LIKE YOUR SAMPLE)
+================================ */
+@media (max-width: 1200px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbar nav,
+  .user-profile {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .feed-item,
+  .alert-item {
+    flex-direction: column;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+}
+
+/* margin- content*/
+.summary-text{
+  margin: 18px;
+}
+.smart-alerts{
+  margin: 18px;
+}
+.feed-content {
+  margin: 18px;
+}
+.word-cloud-area {
+  margin: 18px;
+}
+
+@media (min-width: 768px) {
+  .summary-text{
+  margin: 14px;
+}
+.smart-alerts{
+  margin: 14px;
+}
+.feed-content {
+  margin: 14px;
+}
+.word-cloud-area {
+  margin: 14px;
+}
+}
+@media (min-width: 425px) {
+  .summary-text{
+  margin: 8px;
+}
+.smart-alerts{
+  margin: 8px;
+}
+.feed-content {
+  margin: 8px;
+}
+.word-cloud-area {
+  margin: 8px;
+}
+}
+
+
+/* ================================
+   LAPTOP & BELOW (≤ 1024px)
+================================ */
+@media (min-width: 1024px) {
+
+  /* STACK EVERYTHING */
+  .dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+  /* REMOVE GRID POSITIONING */
+  .feed-panel,
+  .trend-intelligence,
+  .live-sentiment-trends,
+  .daily-summary {
+    width: 100%;
+    min-height: auto;
+    grid-column: unset;
+    grid-row: unset;
+  }
+
+  .feed-content {
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+  /* FEED HEIGHT FIX */
+  .feed-panel {
+    height: auto;
+  }
+
+  /* CHART HEIGHT */
+  .chart-container {
+    height: 300px !important;
+  }
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViralSense AI - Reports</title>
+    
+    <link rel="stylesheet" href="reports.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="navbar">
+        <div class="logo">
+          <img
+            src="assets/logo.png"
+            alt="ViralSense AI Logo"
+            class="logo-img"
+          />
+          ViralSense AI
+        </div>
+        <nav>
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+        </nav>
+        <div class="user-profile">
+          <button id="logoutBtn">Log Out</button>
+        </div>
+        <button class="hamburger" id="hamburgerBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </header>
+      <!-- Mobile / Laptop Sidebar -->
+      <aside class="side-drawer" id="sideDrawer">
+        <button class="close-drawer" id="closeDrawer">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <nav class="drawer-nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="analysis.html">Analysis</a>
+          <a href="reports.html">Reports</a>
+          <a href="setting.html">Settings</a>
+
+          <button class="drawer-logout" id="drawerLogout">Log Out</button>
+        </nav>
+      </aside>
+
+        <main class="reports-layout">
+            
+            <div class="reports-archive panel highlighted-border">
+                <div class="panel-header">
+                    <h3>Generated Reports Archive</h3>
+                </div>
+
+                <div class="report-list-content">
+                    <div class="report-item twitter active">
+                        <i class="fab fa-twitter source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">Weekly Trend Summary - Nov 1-7</p>
+                            <span class="report-date">Nov 17, 2022</span>
+                        </div>
+                        <span class="sentiment positive-tag">Positive</span>
+                    </div>
+
+                    <div class="report-item youtube">
+                        <i class="fab fa-youtube source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">Hate Speech Analysis - Oct</p>
+                            <span class="report-date">Nov 19, 2022</span>
+                        </div>
+                        <span class="sentiment negative-tag">Negative</span>
+                    </div>
+
+                    <div class="report-item twitter">
+                        <i class="fas fa-chart-line source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">Campaign Performance Oct</p>
+                            <span class="report-date">Nov 19, 2022</span>
+                        </div>
+                        <span class="sentiment positive-tag">Positive</span>
+                    </div>
+                    
+                    <div class="report-item reddit">
+                        <i class="fas fa-chart-area source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">Quarterly Deep Dive - Tech Sector</p>
+                            <span class="report-date">Nov 19, 2022</span>
+                        </div>
+                        <span class="sentiment neutral-tag">Neutral</span>
+                    </div>
+
+                    <div class="report-item twitter">
+                        <i class="fas fa-chart-area source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">Q4 Virality Score Breakdown</p>
+                            <span class="report-date">Nov 19, 2022</span>
+                        </div>
+                        <span class="sentiment negative-tag">Negative</span>
+                    </div>
+                    <div class="report-item youtube">
+                        <i class="fab fa-youtube source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">YouTube Content Review - Jan</p>
+                            <span class="report-date">Nov 19, 2022</span>
+                        </div>
+                        <span class="sentiment positive-tag">Positive</span>
+                    </div>
+                    <div class="report-item reddit">
+                        <i class="fab fa-reddit source-icon"></i>
+                        <div class="report-info">
+                            <p class="report-title">Reddit Toxicity Audit - Dec</p>
+                            <span class="report-date">Nov 19, 2022</span>
+                        </div>
+                        <span class="sentiment neutral-tag">Neutral</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="report-main-content">
+                
+                <div class="report-details panel highlighted-border">
+                    <div class="panel-header">
+                        <h3>Report Details: Weekly Trend Summ- Nov 1-7</h3>
+                    </div>
+
+                    <div class="overview-section">
+                        <h4>Overview</h4>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <i class="fas fa-fire"></i> Virality Score: <strong>85%</strong>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-smile" style="color: var(--positive);"></i> Positive Sentiment: <strong>72%</strong>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-bolt" style="color: var(--neon-blue);"></i> Top Trending Topic: <strong>#ClimateAction</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <h4>Sentiment Distribution Over Time</h4>
+                        <div class="chart-controls">
+                            <input type="date" id="start-date" value="2022-11-01">
+                            <input type="date" id="end-date" value="2022-11-07">
+                            <button class="btn-sm"><i class="fas fa-calendar-alt"></i> Select Range</button>
+                        </div>
+                        <div class="chart-container" style="height: 300px; padding-top: 15px;">
+                            <canvas id="reportSentimentChart"></canvas>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="new-report-generator panel highlighted-border">
+                    <h3>Generate New Report</h3>
+                    <form id="newReportForm" class="new-report-form">
+                        
+                        <div class="form-row">
+                            <label for="report-title">Report Title</label>
+                            <input type="text" id="report-title" name="reportTitle" placeholder="e.g., Q4 Tech Sector Deep Dive" required>
+                        </div>
+
+                        <div class="form-row date-range-group">
+                            <div class="date-input">
+                                <label for="start-date-new">Start Date</label>
+                                <input type="date" id="start-date-new" name="startDate" required>
+                            </div>
+                            <div class="date-input">
+                                <label for="end-date-new">End Date</label>
+                                <input type="date" id="end-date-new" name="endDate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row checkbox-group">
+                            <label>Data Platforms</label>
+                            <div class="checkbox-list">
+                                <input type="checkbox" id="platform-twitter" name="platforms" value="Twitter" checked> <label for="platform-twitter"><i class="fab fa-twitter"></i> Twitter</label>
+                                <input type="checkbox" id="platform-youtube" name="platforms" value="YouTube"> <label for="platform-youtube"><i class="fab fa-youtube"></i> YouTube</label>
+                                <input type="checkbox" id="platform-reddit" name="platforms" value="Reddit"> <label for="platform-reddit"><i class="fab fa-reddit"></i> Reddit</label>
+                                <input type="checkbox" id="platform-news" name="platforms" value="NewsAPI"> <label for="platform-news"><i class="fas fa-newspaper"></i> NewsAPI</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row checkbox-group">
+                            <label>Analysis Type</label>
+                            <div class="checkbox-list analysis-type-grid">
+                                <input type="checkbox" id="analysis-sentiment" name="analysis" value="Sentiment" checked> <label for="analysis-sentiment">Sentiment Analysis</label>
+                                <input type="checkbox" id="analysis-trend" name="analysis" value="Trend"> <label for="analysis-trend">Trend Analysis</label>
+                                <input type="checkbox" id="analysis-hatespeech" name="analysis" value="HateSpeech"> <label for="analysis-hatespeech">Hate Speech Detection</label>
+                                <input type="checkbox" id="analysis-virality" name="analysis" value="Virality"> <label for="analysis-virality">Virality Score Breakdown</label>
+                                <input type="checkbox" id="analysis-entity" name="analysis" value="Entity"> <label for="analysis-entity">Entity Mentions</label>
+                                <input type="checkbox" id="analysis-misinfo" name="analysis" value="Misinformation"> <label for="analysis-misinfo">Misinformation Flags</label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="cancelReport">Cancel</button>
+                            <button type="submit" class="btn-primary" id="generateReport">Generate Report</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="reports-side-panel">
+                 <div class="key-takeways panel">
+                    <h3>Key Takeaways</h3>
+                    <ul class="takeaway-list">
+                        <li><i class="fas fa-check-circle" style="color: var(--positive);"></i> Overall positive trend in #EcoPhone discussions mid-week.</li>
+                        <li><i class="fas fa-exclamation-triangle" style="color: var(--negative);"></i> Spike in #BCIunions discourse points to hate speech detected mid-week.</li>
+                        <li><i class="fas fa-arrow-down" style="color: var(--negative);"></i> Minor increase in hate speech related to election topics this week.</li>
+                    </ul>
+                </div>
+
+                <div class="top-entities panel">
+                    <h3>Top Entities Mentioned</h3>
+                    <ul class="entity-list">
+                        <li><i class="fas fa-robot" style="color: var(--neon-purple);"></i> *OpenAI* (15K Mentions)</li>
+                        <li><i class="fab fa-apple"></i> *Apple* (12K Mentions)</li>
+                        <li><i class="fas fa-car" style="color: #CC0000;"></i> *Tesla* (9K Mentions)</li>
+                        <li><i class="fas fa-leaf" style="color: var(--positive);"></i> *Greta Thunberg* (5K Mentions)</li>
+                        <li><i class="fas fa-landmark" style="color: var(--neon-blue);"></i> *The Senate* (3K Mentions)</li>
+                    </ul>
+                </div>
+                
+                <button class="btn-large btn-save"><i class="fas fa-save"></i> Save Changes</button>
+            </div>
+
+        </main>
+    </div>
+    
+    <script src="reports.js"></script>
+    <script>
+      const hamburger = document.getElementById("hamburgerBtn");
+      const drawer = document.getElementById("sideDrawer");
+      const closeDrawer = document.getElementById("closeDrawer");
+      const drawerLogout = document.getElementById("drawerLogout");
+
+      hamburger.addEventListener("click", () => {
+        drawer.classList.add("open");
+      });
+
+      closeDrawer.addEventListener("click", () => {
+        drawer.classList.remove("open");
+      });
+
+      drawerLogout.addEventListener("click", () => {
+        document.getElementById("logoutBtn")?.click();
+      });
+    </script>
+</body>
+</html>

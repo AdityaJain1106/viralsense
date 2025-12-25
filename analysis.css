@@ -1,0 +1,404 @@
+/* ================================
+   GLOBAL RESET (MATCH DASHBOARD)
+================================ */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Fira Code", monospace;
+  background-color: #0b1121;
+  color: #c9d1d9;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ================================
+   VARIABLES (MATCH DASHBOARD)
+================================ */
+:root {
+  --neon-blue: #63d4e0;
+  --neon-purple: #9d52ff;
+  --mid-bg: #161b22;
+  --panel-border: #2d343f;
+  --secondary-text: #8b949e;
+  --positive: #3fb950;
+  --negative: #ff7b72;
+  --neutral: #63d4e0;
+  --box-bg-inner: #0d1117;
+}
+
+/* ================================
+   APP CONTAINER
+================================ */
+.app-container {
+  max-width: 1600px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ================================
+   NAVBAR (MATCH DASHBOARD)
+================================ */
+.navbar {
+  height: 60px;
+  background: #121820;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--neon-purple);
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.nav-links a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #c9d1d9;
+}
+
+.nav-links a:hover {
+  color: var(--neon-blue);
+  border-bottom: 2px solid var(--neon-blue);
+}
+
+.navbar nav a,
+.nav-links a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #c9d1d9;
+  font-size: 1rem;
+  position: relative;
+}
+
+.navbar nav a:hover,
+.nav-links a:hover {
+  color: var(--neon-blue);
+}
+
+.navbar nav a.active,
+.nav-links a.active {
+  color: var(--neon-purple);
+}
+
+#logoutBtn {
+  background: var(--neon-purple);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================================
+   PANELS (MATCH DASHBOARD)
+================================ */
+.panel {
+  background: var(--mid-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+}
+
+/* ================================
+   ANALYTICS LAYOUT
+================================ */
+
+/* Default: stacked (mobile, tablet, small laptop) */
+.analysis-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Desktop / large laptop */
+@media (min-width: 1024px) {
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* ================================
+   FEED (MATCH DASHBOARD)
+================================ */
+.feed-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+  .feed-content {
+    max-height: 800px;
+  }
+}
+
+.feed-item {
+  background: var(--box-bg-inner);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.source-icon {
+  font-size: 1.4rem;
+}
+
+/* ================================
+   SENTIMENT TAGS
+================================ */
+.sentiment {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  height: 24px;
+}
+
+.positive {
+  background: var(--positive);
+  color: #000;
+}
+.negative {
+  background: var(--negative);
+  color: #000;
+}
+.neutral {
+  background: var(--neutral);
+  color: #000;
+}
+
+/* ================================
+   POST ANALYSIS
+================================ */
+.post-content {
+  background: var(--box-bg-inner);
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid var(--panel-border);
+}
+
+/* ================================
+   AI INSIGHTS
+================================ */
+.ai-insights li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--panel-border);
+  font-size: 0.95rem;
+}
+
+/* ================================
+   VIRALITY SCORE
+================================ */
+.score-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-chart {
+  width: 200px;
+  height: 100px;
+}
+
+/* ================================
+   SENTIMENT BREAKDOWN
+================================ */
+.progress-bar {
+  height: 15px;
+  border-radius: 5px;
+  background: var(--box-bg-inner);
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: "";
+  display: block;
+  height: 100%;
+}
+
+.progress-bar.positive::after {
+  background: var(--positive);
+  width: 78%;
+}
+.progress-bar.neutral::after {
+  background: var(--neutral);
+  width: 15%;
+}
+.progress-bar.negative::after {
+  background: var(--negative);
+  width: 7%;
+}
+
+/* ================================
+   RESPONSIVE TWEAKS (MATCH DASHBOARD)
+================================ */
+@media (max-width: 1200px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .feed-item {
+    flex-direction: column;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+}
+
+/* Sidebar NEVER exists visually on desktop */
+@media (min-width: 1025px) {
+  .side-drawer {
+    display: none !important;
+  }
+}
+
+/* Desktop */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--neon-blue);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Laptop & below */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Hide top navbar links on small screens */
+@media (max-width: 1024px) {
+  .navbar nav,
+  .nav-links,
+  .user-profile {
+    display: none;
+  }
+}
+
+/* ================================
+   SIDE DRAWER (NO OVERFLOW)
+================================ */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: #0b1121;
+  padding: 25px;
+  z-index: 999;
+
+  /* 🔥 KEY FIX */
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
+}
+
+.close-drawer {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--neon-purple);
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.drawer-nav a {
+  text-decoration: none;
+  color: #c9d1d9;
+  font-size: 1.1rem;
+}
+
+.drawer-logout {
+  margin-top: 40px;
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--neon-purple);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+/* margin- content*/
+.feed-content {
+  margin: 18px;
+}
+.post-content {
+  margin: 18px;
+}
+.ai-insights ul {
+  margin: 18px;
+}
+.sentiment-breakdown {
+  margin: 18px;
+}
+
+@media (min-width: 768px) {
+  .feed-content {
+    margin: 14px;
+  }
+  .post-content {
+    margin: 14px;
+  }
+  .ai-insights ul {
+    margin: 14px;
+  }
+  .sentiment-breakdown {
+    margin: 14px;
+  }
+}
+@media (min-width: 425px) {
+  .feed-content {
+    margin: 8px;
+  }
+  .post-content {
+    margin: 8px;
+  }
+  .ai-insights ul {
+    margin: 8px;
+  }
+  .sentiment-breakdown {
+    margin: 8px;
+  }
+}

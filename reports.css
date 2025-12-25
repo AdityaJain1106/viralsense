@@ -1,0 +1,593 @@
+@import url('dashboard.css');
+
+
+/* ================================
+   REPORTS LAYOUT — DEFAULT STACK
+================================ */
+.reports-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: auto;
+}
+
+/* ================================
+   REPORTS LAYOUT — DESKTOP
+================================ */
+@media (min-width: 1024px) {
+  .reports-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1fr;
+    gap: 20px;
+    height: 90vh;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .reports-archive,
+  .report-main-content,
+  .reports-side-panel {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    width: 100%;
+  }
+}
+
+
+/* Desktop scrolling only */
+@media (min-width: 1024px) {
+  .report-list-content {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+}
+
+/* Mobile natural flow */
+@media (max-width: 1024px) {
+  .report-list-content {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .checkbox-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .date-range-group {
+    flex-direction: column;
+  }
+}
+
+
+
+/* --- 1. Reports Archive Panel --- */
+.reports-archive {
+    /* grid-column: 1 / 2; */
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.report-list-content {
+    overflow-y: auto;
+    flex-grow: 1;
+    /* Use the same custom scrollbar glow as feed-content */
+}
+.report-list-content::-webkit-scrollbar-thumb { background-color: var(--neon-purple); border-radius: 3px; }
+
+.report-item {
+    background-color: #0d1117; 
+    padding: 12px 15px; 
+    border-radius: 6px;
+    margin-bottom: 8px; 
+    font-size: 0.9em; 
+    border-left: 4px solid var(--mid-bg); /* Default border color */
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.report-item:hover {
+    background-color: #1e2430; 
+    transform: translateX(3px); 
+}
+
+
+.report-info {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+.report-title {
+    margin: 0;
+    font-weight: 600;
+}
+.report-date {
+    font-size: 0.75em;
+    color: var(--secondary-text);
+}
+
+.report-item .source-icon {
+    font-size: 1.2em;
+    color: var(--secondary-text); /* Default icon color */
+    flex-shrink: 0;
+}
+.report-item.twitter .source-icon { color: #1da1f2; }
+.report-item.youtube .source-icon { color: #ff0000; }
+.report-item.reddit .source-icon { color: #ff4500; }
+
+/* Sentiment Tags for Reports - Slightly larger than feed items */
+.sentiment-tag {
+    font-size: 0.75em; 
+    padding: 4px 10px;
+    border-radius: 16px; 
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+.positive-tag { background-color: var(--positive); color: var(--dark-bg); }
+.negative-tag { background-color: var(--negative); color: var(--dark-bg); }
+.neutral-tag { background-color: var(--neutral); color: var(--dark-bg); }
+
+
+/* --- 2. Report Details Panel (Top-Middle) --- */
+.report-main-content {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.report-details {
+    flex-shrink: 0; /* Take up only necessary space */
+}
+
+.overview-section h4, .chart-section h4 {
+    color: var(--neon-purple);
+    margin-top: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--panel-border);
+}
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--panel-border);
+}
+.stat-item {
+    font-size: 0.9em;
+    padding: 5px 10px;
+    background-color: #0d1117;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+}
+.stat-item i {
+    margin-right: 5px;
+    color: var(--neon-blue);
+}
+
+.chart-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+.chart-controls input[type="date"] {
+    background-color: #0d1117;
+    color: var(--primary-text);
+    border: 1px solid var(--panel-border);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace;
+}
+.btn-sm {
+    background-color: var(--neon-blue);
+    color: var(--dark-bg);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.btn-sm:hover {
+    background-color: #58a6ff;
+}
+
+/* --- 3. Generate New Report Panel (Bottom-Middle) --- */
+.new-report-generator {
+    flex-grow: 1; /* Use the remaining space */
+}
+.new-report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+.form-row label {
+    font-size: 0.9em;
+    color: var(--neon-purple);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.form-row input[type="text"] {
+    background-color: #0d1117;
+    color: var(--primary-text);
+    border: 1px solid var(--panel-border);
+    padding: 10px;
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace;
+}
+
+.date-range-group {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+.date-input {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.date-input input {
+    width: 100%;
+}
+
+
+.checkbox-group {
+    border: 1px solid var(--panel-border);
+    padding: 10px;
+    border-radius: 8px;
+}
+.checkbox-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px;
+    font-size: 0.9em;
+    padding-top: 5px;
+}
+.checkbox-list label {
+    color: var(--primary-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-transform: none; /* Keep label text normal */
+}
+.checkbox-list input[type="checkbox"] {
+    margin-right: 8px;
+    /* Custom checkbox styling for neon effect */
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--neon-blue);
+    border-radius: 3px;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+.checkbox-list input[type="checkbox"]:checked {
+    background-color: var(--neon-blue);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 5px var(--neon-blue);
+}
+.checkbox-list label i {
+    margin-right: 5px;
+    color: var(--secondary-text);
+}
+
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--panel-border);
+}
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Fira Code', monospace;
+}
+.btn-primary {
+    background-color: var(--neon-purple);
+    color: var(--dark-bg);
+    border: 1px solid var(--neon-purple);
+}
+.btn-primary:hover {
+    background-color: #7b43a9;
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--negative);
+    border: 1px solid var(--negative);
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 123, 114, 0.1);
+    box-shadow: 0 0 10px var(--negative);
+}
+
+/* --- 4 & 5. Side Panel (Right Column) --- */
+.reports-side-panel {
+    grid-column: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.key-takeways, .top-entities {
+    flex-shrink: 0;
+}
+.takeaway-list, .entity-list {
+    list-style: none;
+    padding-left: 0;
+}
+.takeaway-list li {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #30363d;
+}
+.takeaway-list li i, .entity-list li i {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+.entity-list li {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    font-weight: 500;
+}
+
+.btn-large {
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+.btn-save {
+    background-color: var(--highlight-blue);
+    color: var(--dark-bg);
+    border: 1px solid var(--highlight-blue);
+    margin-top: auto; /* Pushes the button to the bottom */
+}
+.btn-save:hover {
+    background-color: #58a6ff;
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.7);
+}
+
+.report-form input[type="text"],
+.report-form select {
+    padding: 10px;
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    background-color: var(--dark-bg);
+    color: var(--primary-text);
+    margin-bottom: 10px;
+}
+
+/* Ensure the submit button uses the dashboard's button style */
+.report-generator-panel button {
+    /* Uses .login-btn style from the previous requests */
+    align-self: flex-start; /* Aligns button to the left */
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Report Settings Panel Styles */
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #30363d;
+}
+
+.setting-item label {
+    margin: 0;
+    color: var(--primary-text);
+    font-size: 1em;
+}
+
+.setting-item select {
+    padding: 5px;
+    border: 1px solid var(--panel-border);
+    border-radius: 4px;
+    background-color: var(--dark-bg);
+    color: var(--primary-text);
+}
+
+
+
+/* ================================
+   RESPONSIVE TWEAKS (MATCH DASHBOARD)
+================================ */
+@media (max-width: 1200px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .feed-item {
+    flex-direction: column;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+}
+
+/* Sidebar NEVER exists visually on desktop */
+@media (min-width: 1025px) {
+  .side-drawer {
+    display: none !important;
+  }
+}
+
+/* Desktop */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--neon-blue);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Laptop & below */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Hide top navbar links on small screens */
+@media (max-width: 1024px) {
+  .navbar nav,
+  .nav-links,
+  .user-profile {
+    display: none;
+  }
+}
+
+/* ================================
+   SIDE DRAWER (NO OVERFLOW)
+================================ */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: #0b1121;
+  padding: 25px;
+  z-index: 999;
+
+  /* 🔥 KEY FIX */
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
+}
+
+.close-drawer {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--neon-purple);
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.drawer-nav a {
+  text-decoration: none;
+  color: #c9d1d9;
+  font-size: 1.1rem;
+}
+
+.drawer-logout {
+  margin-top: 40px;
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--neon-purple);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+/* margin- content*/
+.report-list-content {
+  margin: 18px;
+}
+.overview-section {
+  margin: 18px;
+}
+.chart-section {
+  margin: 18px;
+}
+.takeaway-list {
+  margin: 18px;
+}
+.entity-list {
+  margin: 18px;
+}
+.new-report-form {
+  margin: 18px;
+}
+
+@media (min-width: 768px) {
+  .report-list-content {
+    margin: 14px;
+  }
+  .overview-section {
+    margin: 14px;
+  }
+  .chart-section {
+    margin: 14px;
+  }
+  .takeaway-list {
+    margin: 14px;
+  }
+  .entity-list {
+    margin: 14px;
+  }
+  .new-report-form {
+    margin: 14px;
+  }
+}
+@media (min-width: 425px) {
+  .report-list-content {
+    margin: 8px;
+  }
+  .overview-section {
+    margin: 8px;
+  }
+  .chart-section {
+    margin: 8px;
+  }
+  .takeaway-list {
+    margin: 8px;
+  }
+  .entity-list {
+    margin: 8px;
+  }
+  .new-report-form {
+    margin: 8px;
+  }
+}

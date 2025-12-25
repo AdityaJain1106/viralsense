@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login / Signup with Firebase Auth</title>
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <main class="card" role="main">
+        <!-- Top-right logo: replace src with your logo file or remote URL -->
+        <img src="assets/logo.png" alt="logo" class="logo" id="pageLogo" />
+
+        <div class="grid">
+          <section class="hero" aria-hidden="false">
+            <h2>Welcome to Our App</h2>
+            <p>
+              Sign up for a new account or sign in. Use Google for quick access.
+            </p>
+          </section>
+
+          <section class="form" aria-label="Authentication form">
+            <h1 id="title" style="margin: 0 0 8px; font-size: 18px">
+              Sign up / Sign in
+            </h1>
+
+            <div id="auth-forms">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+              />
+
+              <label for="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Choose a safe password"
+                autocomplete="current-password"
+              />
+
+              <div class="row" style="margin-top: 12px">
+                <button id="signup">Create account</button>
+                <button
+                  id="signin"
+                  style="
+                    background: transparent;
+                    color: var(--accent);
+                    border: 1px solid rgba(96, 165, 250, 0.18);
+                  "
+                >
+                  Sign in
+                </button>
+              </div>
+
+              <div style="height: 12px"></div>
+
+              <div class="google" id="googleSignIn" role="button" tabindex="0">
+                🟢 Sign in with Google
+              </div>
+
+              <div class="small">
+                Already have an account? Use Sign in (or use Google)
+              </div>
+            </div>
+
+            <div id="signed-in" class="hidden" style="margin-top: 8px">
+              <div class="small">
+                Signed in as <strong id="user-email"></strong>
+              </div>
+              <button id="signout">Sign out</button>
+              <div id="user-info" class="small"></div>
+            </div>
+
+            <div id="msg" class="message hidden" aria-live="polite"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="signup.js"></script>
+  </body>
+</html>
