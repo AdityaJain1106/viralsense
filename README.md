@@ -1,4 +1,4 @@
-🚀 ViralSense — Real-Time Social Media Intelligence with AI
+🚀 ViraliSense — Real-Time Social Media Intelligence with AI
 🌟 Highlights
 
 🔴 Real-time trend & sentiment analysis across social media and news
