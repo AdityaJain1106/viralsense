@@ -63,7 +63,7 @@ The project bridges the gap between raw online noise and clear intelligence.
 
 🧑‍💻 Author
 
-Built by Aditya Jain , Harshit Tyagi , Jagriti Sharma , Buvi Jain 
+Built by Aditya Jain , Harshit Tyagi , Jagriti Sharma , Bhuvi Jain 
 Computer Science Engineering student & full-stack developer
 Passionate about AI, data-driven systems, and impactful software.
 
